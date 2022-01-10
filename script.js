@@ -1,18 +1,18 @@
-var inputText = document.querySelector('#inputText');
-var btnTranslate = document.querySelector('#btn-translate');
-var outputText = document.querySelector('#outputText');
+const inputText = document.querySelector('#inputText');
+const btnTranslate = document.querySelector('#btn-translate');
+const outputText = document.querySelector('#outputText');
 
-var url = `https://api.funtranslations.com/translate/shakespeare.json`;
+const url = `https://api.funtranslations.com/translate/shakespeare.json`;
 
-function translationURL(text) {
+const translationURL = (text) => {
     return url + '?text=' + text;
-}
+};
 
-function errorHandler(error) {
+const errorHandler = (error) => {
     console.log('Error =', error);
-}
+};
 
-function clickHandler() {
+const clickHandler = () => {
     fetch(translationURL(inputText.value))
         .then((response) => response.json())
         .then((json) => {
@@ -20,6 +20,6 @@ function clickHandler() {
             outputText.innerText = json.contents.translated;
         })
         .catch(errorHandler);
-}
+};
 
 btnTranslate.addEventListener('click', clickHandler);
